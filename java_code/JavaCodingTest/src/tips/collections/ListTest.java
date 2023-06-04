@@ -1,4 +1,4 @@
-package tips;
+package tips.collections;
 
 import java.sql.Array;
 import java.util.ArrayList;

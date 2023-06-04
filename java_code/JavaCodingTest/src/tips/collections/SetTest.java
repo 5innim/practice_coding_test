@@ -1,4 +1,4 @@
-package tips;
+package tips.collections;
 
 import java.util.HashSet;
 import java.util.Set;
