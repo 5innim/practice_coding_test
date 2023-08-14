@@ -1,5 +1,7 @@
 package solutions.string;
 
+import static solutions.string.Sol_9012.SOut.bufferedWriter;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -14,12 +16,9 @@ public class Sol_9012 {
     }
     public static void main(String[] args) throws Exception{
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        SOut sOut = new SOut() {
-            @Override
-            public void println(String str) throws IOException {
-                bufferedWriter.write(str + "\n");
-                bufferedWriter.flush();
-            }
+        SOut sOut = str -> {
+            bufferedWriter.write(str + "\n");
+            bufferedWriter.flush();
         };
 
         int num = Integer.parseInt(bufferedReader.readLine());
@@ -38,7 +37,7 @@ public class Sol_9012 {
             if (sum == 0) sOut.println("YES");
             else sOut.println("NO");
         }
-        SOut.bufferedWriter.close();
+        bufferedWriter.close();
         bufferedReader.close();
     }
 }
