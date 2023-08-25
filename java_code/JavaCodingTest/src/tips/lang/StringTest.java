@@ -58,5 +58,19 @@ public class StringTest {
         System.out.println(xxx3);
 
         System.out.println("원본:" + s); // 원본 문자열은 변경 안됨. (StringBuilder 와의 차이)
+
+        // format
+        /**
+         * 실수형
+         *  %15.4f
+         *  15. => 문자열 길이 15보다 작을시 " "채워서 문자열 길이 15으로 만듦
+         *  .4 => 소수점 밑으로 4자리까지. 반올림해서 표현
+         *
+         *  %015f
+         *  015. => 문자열 길이 15보다 작을시 "0"채워서 문자열 길이 15으로 만듦
+         */
+        String fs = String.format("%015.4f", 444.4f);
+        System.out.println(fs);
+        System.out.println(fs.length());
     }
 }
