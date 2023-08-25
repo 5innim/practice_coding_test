@@ -1,6 +1,5 @@
-package tips.collections;
+package tips.iterable.collection.list;
 
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
 
