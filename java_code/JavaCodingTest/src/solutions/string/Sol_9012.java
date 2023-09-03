@@ -1,7 +1,5 @@
 package solutions.string;
 
-import static solutions.string.Sol_9012.SOut.bufferedWriter;
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -11,14 +9,14 @@ import java.io.OutputStreamWriter;
 public class Sol_9012 {
     @FunctionalInterface
     public interface SOut {
-        BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(System.out));
-        void println(String str) throws IOException;
+        void println(BufferedWriter bw, String str) throws IOException;
     }
     public static void main(String[] args) throws Exception{
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        SOut sOut = str -> {
-            bufferedWriter.write(str + "\n");
-            bufferedWriter.flush();
+        BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(System.out));
+        SOut sOut = (br, str) -> {
+            br.write(str + "\n");
+            br.flush();
         };
 
         int num = Integer.parseInt(bufferedReader.readLine());
@@ -30,12 +28,12 @@ public class Sol_9012 {
                 char c = s.charAt(j);
                 if (c == '(') sum += 1;
                 else if (c == ')') sum -= 1;
-                else sOut.println("it's not expected");
+                else sOut.println(bufferedWriter, "it's not expected");
                 if (sum < 0) break;
             }
 
-            if (sum == 0) sOut.println("YES");
-            else sOut.println("NO");
+            if (sum == 0) sOut.println(bufferedWriter, "YES");
+            else sOut.println(bufferedWriter, "NO");
         }
         bufferedWriter.close();
         bufferedReader.close();
