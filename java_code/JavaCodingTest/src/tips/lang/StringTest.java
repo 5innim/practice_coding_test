@@ -3,6 +3,13 @@ package tips.lang;
 import java.util.Arrays;
 
 public class StringTest {
+
+    /**
+     * String
+     * - immutable
+     *
+     */
+
     public static void main(String[] args){
         // String 클래스
 

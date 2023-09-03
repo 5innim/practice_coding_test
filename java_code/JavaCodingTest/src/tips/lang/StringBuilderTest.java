@@ -1,6 +1,13 @@
 package tips.lang;
 
 public class StringBuilderTest {
+
+    /**
+     * StringBuilder
+     * - mutable
+     * - thread 동기화 지원 X
+     *
+     */
     public static void main(String[] args){
         // StringBuilder
         StringBuilder s =  new StringBuilder("sequence");
