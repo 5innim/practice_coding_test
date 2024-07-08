@@ -19,10 +19,12 @@ public class ArraysTest {
 
         Arrays.sort(a);
         List<Integer> b =  Arrays.asList(a);
+        System.out.println(b);
         Stream c  = Arrays.stream(a);
 
         Integer[] d = {3, 2, 1};
         Arrays.compare(a, d); // 배열요소의 타입이 Comparable을 구현하여야 한다.
+        System.out.println(Arrays.compare(a, d));
     }
 
 }

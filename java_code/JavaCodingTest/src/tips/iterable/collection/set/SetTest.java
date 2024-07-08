@@ -13,6 +13,7 @@ public class SetTest {
         set2.add("element2");
         set2.add(1);
 
+
         // 출력방법
         System.out.println(set2);
 

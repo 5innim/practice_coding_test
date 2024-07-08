@@ -28,6 +28,12 @@ public class StringTest {
         System.out.println(s1 == s2); // true : 리터럴로 생성시에 기존의 같은 값을 가지고 있는 객체가 있으면 주소값을 공유한다.
         System.out.println(x1 == x2); // false : new 사용시 새로운 객체 생성
 
+        s1 += "dd";
+        System.out.println(s2);
+        System.out.println(s1);
+
+        System.out.println(s1 == s2);
+
         //실제값 비교 .equals 사용
         System.out.println(s1.equals(s2));
         System.out.println(x1.equals(x2));

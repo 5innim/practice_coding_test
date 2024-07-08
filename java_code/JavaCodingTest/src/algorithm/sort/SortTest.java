@@ -39,6 +39,10 @@ public class SortTest {
 
         // 내림차순
         list.sort(Comparator.reverseOrder()); // List<>.sort(Comparator ..) 은 내부적으로 Arrays.sort 사용 최악시 O(n^2)
+                                                // Collections 의 sort 는 내부적으로 병합 정렬을 사용하기 때문에 최악의 경우에도 O(nlogn)이라고 한다.
+                                                // => 위 내용은 예전에 찾아본 내용.. 실제로 구현부를 보면 Collections.sort 또한 내부적으로 list.sort 를 호출한다.
+                                                // 찾아보니 두 case 모두 Arrays.sort 를 사용하는듯 하며, 정렬대상의 type 에 따라 달라지는듯 하다.
+                                                // https://brandpark.github.io/java/2021/01/05/arrays_sort1.html
         System.out.println(list.toString());
 
         // 따라서 toCompare 를 overriding 하는 자식 클래스를 만들어서 정렬순서를 새롭게 정의하는 게 나을듯.

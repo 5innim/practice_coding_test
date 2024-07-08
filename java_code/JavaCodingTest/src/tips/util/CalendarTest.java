@@ -25,7 +25,28 @@ public class CalendarTest {
 
 
         // java.util.Date
+        /**
+         * Date.getTime() 메서드는 1970년 1월 1일 00:00:00 GMT로부터 경과된 시간을 밀리초 단위로 반환합니다.
+         */
         Date d = new Date();
         System.out.println(d);
+        System.out.println(d.getTime());
+
+        // 밀리초를 초로 변환
+        long seconds = d.getTime() / 1000;
+
+        // 초를 분으로 변환
+        long minutes = seconds / 60;
+
+        // 분을 시간으로 변환
+        long hours = minutes / 60;
+
+        // 시간을 일로 변환
+        long days = hours / 24;
+
+        // 일을 년으로 변환 (대략적인 값, 윤년은 무시)
+        long years = days / 365;
+
+        System.out.println(years);
     }
 }
