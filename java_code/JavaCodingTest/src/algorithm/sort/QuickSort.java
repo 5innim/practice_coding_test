@@ -1,75 +1,72 @@
 package algorithm.sort;
 
-import java.util.Arrays;
-import java.util.function.Consumer;
+import java.util.*;
 
 public class QuickSort {
 
     /**
-     * 퀵 정렬
-     *  - 맨 앞의 원소를 피봇으로 하며 좌측과 우측에서부터 피봇과 크기를 비교하면서 정렬,
-     *    좌측과 우측을 가르키는 index 가 교차하는 시점에 좌측을 가리키던 index 의 원소와 pivot 의 원소를 교체 후
-     *    pivot 을 기준으로 2개의 list로 분할하여 각각의 list에 위 과정을 반복
-     *  - 매 사이클마다 정렬을 해야 할 list의 크기가 절반 가량 줄어듬 -> log(n) 따라서 평균적으로 O(nlog(n))
-     *    ,하지만 최악의 경우 O(n^2)
      *
-     *  * 구현시 재귀함수에 인자로 슬라이싱한 배열을 넘겨주는 것 보다 index를 넘기는 방법이 메모리를 생각했을 때 효율적
+     *  퀵 정렬
+     *      - 평균 O(n*log(n)), 최악 O(n^2)
+     *      - 가장 첫 원소를 pivot 으로 두고 left = pivot + 1, right = 마지막 index  로 초기화
+     *          left 는 오른쪽으로 이동하며 pivot 보다 큰 값을 찾고, right 는 왼쪽으로 이동하며 pivot
+     *          보다 작은 값을 찾는다.
+     *          양쪽의 값이 찾아진 이후 만약 left 와 right 가 교차하지 않았다면 서로 값을 바꿔주고,
+     *          교차하였다면 right 와  pivot 의 위치를 바꿔주고 pivot 을 기준으로 배열을 나눈 뒤
+     *          각 배열에 위 과정을 반복
+     *
      */
 
-    public static void main (String[] args) {
-        int[] array = {1,4,3,9,8,4,5,7,6};
-
+    public static void main(String[] args) {
+        int[] array = new int[]{3, 1, 2,3,7,5,8, 32, 34, 87,1,6,76,2,43,12};
         quickSort(array, 0, array.length - 1);
 
         System.out.println(Arrays.toString(array));
+
     }
 
-    static void quickSort(int[] array, int start, int end) {
+    static void quickSort(int[] a, int start, int end) {
         int pivot = start;
-        int leftI = start + 1;
-        int rightI = end;
-        if (leftI > rightI) {
+        int left = start + 1;
+        int right = end;
+        if (left > right) {
             System.out.println("over");
             return;
         }
 
-        while (true) {
-            System.out.println("--1: " + Arrays.toString(array));
-            for (int i=leftI; i<=end; i++) {
-                leftI = i;
-                if (array[i]>array[pivot]) break;
+        while(true) {
+            for (int i=left; i<=end; i++) {
+                left = i;
+                if (a[i] > a[pivot]) {
+                    break;
+                }
             }
 
-            for (int i=rightI; i>start; i--) {
-                rightI = i;
-                if (array[i]<array[pivot]) break;
-
+            for (int i=right; i>pivot; i--) {
+                right = i;
+                if (a[i] < a[pivot]) {
+                    break;
+                }
             }
 
-            System.out.println("pivot: " + array[pivot]);
-            System.out.println("leftI: " + array[leftI]);
-            System.out.println("rightI: " + array[rightI]);
-            if (leftI >= rightI) {
+            if (right <= left) {
                 int minI = pivot;
-                for(int i : new int[]{pivot, leftI, rightI}) if (array[minI] > array[i]) minI = i;
-                trade(array, pivot, minI);
-                System.out.println("--2: " + Arrays.toString(array));
-                quickSort(array, start, minI - 1);
-                quickSort(array, minI + 1, end);
+                if (a[pivot] > a[right]) minI = right;
+                tradeValue(a, pivot, minI);
+                quickSort(a, start, minI - 1);
+                quickSort(a, minI + 1, end);
                 return;
-            }
-            else if (rightI > leftI) {
-                trade(array, leftI, rightI);
-                System.out.println("--3: " + Arrays.toString(array));
-            } else System.out.println("it's not expected");
-        }
 
+            } else if (right > left) {
+                tradeValue(a, right, left);
+            }
+        }
     }
 
-    static void trade(int[] array, int a, int b) {
-        int t = array[a];
-        array[a] = array[b];
-        array[b] = t;
+    static void tradeValue(int[] a, int i1, int i2) {
+        int t = a[i1];
+        a[i1] = a[i2];
+        a[i2] = t;
     }
 
 }
