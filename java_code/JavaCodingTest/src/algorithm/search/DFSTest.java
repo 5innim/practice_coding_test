@@ -1,66 +1,44 @@
 package algorithm.search;
 
-import java.sql.Array;
-import java.util.ArrayList;
-import java.util.Deque;
-import java.util.LinkedList;
-
 public class DFSTest {
 
     /**
-     *
-     * 깊이우선탐색(Depth-first search)
-     *   - stack 자료구조를 사용하여 깊이를 우선하여 탐색하는 알고리즘
-     *   - O(V+E)
-     *
-     * !! DFS 는 재귀함수로!
-     *  for 문이 아닌 재귀함수로 구현하였을때 맨 끝에서부터 앞으로 결과를 가져오는 구현이 가능해진다.
+     * 깊이 우선 탐색
+     *  - 시간복잡도: O(V+E)
+     *  - 스택 사용으로 가장 이후에 들어온 노드에 대해 탐색
+     *      - 구현시 재귀함수 사용, 즉 메서드 스택 사용.
+     *  - 방문 노드를 기록해야함
      */
 
-    public static void main(String[] args) {
-        /**
-         *       1 ----- 2
-         *       |     /
-         *       |   /
-         *       | /
-         *       3 ------- 4
-         *
-         *
-         *       1: 2 3
-         *
-         *       2: 1 3
-         *
-         *       3: 1 2 4
-         *
-         *       4: 3
-         *
-         *
-         */
+    /**
+     *       1 ----- 2
+     *       |     /
+     *       |   /
+     *       | /
+     *       3 ------- 4
+     *
+     */
 
+    public static void main(String... args) {
+        int[][] edges = new int[5][];
+        edges[1] = new int[]{2, 3};
+        edges[2] = new int[]{1, 3};
+        edges[3] = new int[]{1, 2, 4};
+        edges[4] = new int[]{3};
 
+        boolean[] visited = new boolean[5];
+        visited[1] = true;
+        dfs(edges, 1, visited);
 
-        ArrayList<ArrayList<Integer>> edges = new ArrayList<>();
-        for (int i=0; i<5; i++) {
-            edges.add(new ArrayList<>());
-        }
-
-        for (int[] e : new int[][]{{1, 2}, {1, 3}, {2, 3}, {3, 4}}) {
-            edges.get(e[0]).add(e[1]);
-            edges.get(e[1]).add(e[0]);
-        }
-
-        boolean[] visited = {false, false, false, false, false};
-
-        dfs(edges, visited, 1);
     }
 
-    static void dfs(ArrayList<ArrayList<Integer>> edges, boolean[] visited, int node) {
-        visited[node] = true;
-        System.out.println(node);
-
-        for (int e : edges.get(node)) {
-            if (visited[e]) continue;
-            dfs(edges, visited, e);
+    static void dfs(int[][] edges, int node, boolean[] visited) {
+        for (int n : edges[node]) {
+            if (visited[n]) continue;
+            visited[n] = true;
+            System.out.println(n);
+            dfs(edges, n, visited);
         }
     }
+
 }

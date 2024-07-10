@@ -30,4 +30,20 @@ public class BinarySearchTest {
 
     }
 
+
+    // 재귀함수 사용
+    static int binarySearch(int[] a, int start, int end, int target) {
+        if (start == end) {
+            return -1;
+        }
+        int mid = (start + end) / 2;
+        if (a[mid] == target) {
+            return mid;
+        } else if (a[mid] < target) {
+            return binarySearch(a, mid + 1, end, target);
+        } else {
+            return binarySearch(a, start, mid - 1, target);
+        }
+    }
+
 }
